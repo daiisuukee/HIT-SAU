@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2022-02-16 19:21:51
- * @LastEditTime: 2022-02-16 20:18:13
+ * @LastEditTime: 2022-02-16 21:02:56
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Hit-SAU\我是可爱的小jio本\hit-sau配置型 copy.js
@@ -66,8 +66,9 @@ function killApp(name) {
 }
 
 ///////////////////////////////main
-toast("本程序仅作为学习交流使用，禁止私自转发、用于商业用途！！！有bug请QQ：1278578896");
-toast("本程序仅作为学习交流使用，禁止私自转发、用于商业用途！！！有bug请QQ：1278578896");
+toastLog("本程序仅作为学习交流使用，禁止私自转发、用于商业用途！！！有bug请QQ：1278578896");
+toastLog("本程序仅作为学习交流使用，禁止私自转发、用于商业用途！！！有bug请QQ：1278578896");
+log("脚本开始运行")
 var language = "";
 if (launchApp("WeCom")) {// 打开企业微信
     language = "en-US";

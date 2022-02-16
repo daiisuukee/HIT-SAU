@@ -1,7 +1,7 @@
 /*
  * @Author: Daiisuukee（黛苏珂）
  * @Date: 2022-02-15 12:25:55
- * @LastEditTime: 2022-02-16 20:19:56
+ * @LastEditTime: 2022-02-16 21:06:45
  * @LastEditors: Please set LastEditors
  * @Description: 本脚本仅供学习交流使用，禁止用于商业用途，产生的一系列法律纠纷由使用者本人承担，作者不承担任何责任
  */
@@ -59,6 +59,8 @@ function killApp(name) {
 }
 
 ///////////////////////////////main
+log("脚本开始运行");
+sleep(1500);
 if (!device.isScreenOn()) {// 如果屏幕没亮则解锁
     device.wakeUp();
     sleep(500);// 如果你的上滑输入密码界面进不去，请调高数值试试。
@@ -70,8 +72,8 @@ if (!device.isScreenOn()) {// 如果屏幕没亮则解锁
     }
 }
 var language = "";
-toast("本程序仅作为学习交流使用，禁止私自转发、用于商业用途！！！有bug请QQ：1278578896");
-toast("本程序仅作为学习交流使用，禁止私自转发、用于商业用途！！！有bug请QQ：1278578896");
+toastLog("本程序仅作为学习交流使用，禁止私自转发、用于商业用途！！！有bug请QQ：1278578896");
+toastLog("本程序仅作为学习交流使用，禁止私自转发、用于商业用途！！！有bug请QQ：1278578896");
 if (launchApp("WeCom")) {// 打开企业微信
     language = "en-US";
     log("程序启动成功");
