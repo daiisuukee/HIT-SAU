@@ -1,14 +1,14 @@
 /*
  * @Author: Daiisuukee（黛苏珂）
  * @Date: 2022-02-15 12:25:55
- * @LastEditTime: 2022-02-17 18:45:43
+ * @LastEditTime: 2022-02-17 19:12:02
  * @LastEditors: Please set LastEditors
  * @Description: 本脚本仅供学习交流使用，禁止用于商业用途，产生的一系列法律纠纷由使用者本人承担，作者不承担任何责任
  */
 // 下面的变量可以根据你的需求进行调节↓
 // 网页刷新参数（网络不好适当调节）
 var login_waiting_time = 2000; // 进入填报中心的等待时间，默认2秒，提示登录失败请适当提高值
-var fresh_cnt = 0;// 默认网页最大刷新次数为3次
+var fresh_cnt_max = 3;// 默认网页最大刷新次数为3次
 var fresh_max_time = 10000;// 默认网页等待时间为10s
 
 // 日期函数
@@ -63,9 +63,10 @@ function killApp(name) {
 }
 
 // 刷新网页
+var fresh_cnt = 0;
 function freashNet() {
     fresh_cnt++;
-    if (fresh_cnt > 3) {
+    if (fresh_cnt > fresh_cnt_max) {
         toastLog("当前网页无法加载，可能是由于网络不佳，请排除问题后重新运行打卡姬");
         toastLog("打卡姬由于网络问题退出( >﹏<。)～");
         engines.myEngine().forceStop();

@@ -1,7 +1,7 @@
 <!--
  * @Author: daiisuukee（黛苏珂）
  * @Date: 2022-02-16 16:05:19
- * @LastEditTime: 2022-02-17 19:07:21
+ * @LastEditTime: 2022-02-17 19:13:32
  * @Description: In User Settings Edit
  * @FilePath: \Hit-SAU\README.md
 -->
@@ -23,6 +23,8 @@
 5. 可以先点击播放键测试下能否正常打卡，如果出现奇妙的，请发起Issue，或者直接`QQ:1278578896`联系我，本咸鱼不一定什么时候会修（）。
 6. 测试完毕后返回Auto.js，点击刚创建的脚本后面竖着的三个点，点击更多，点击定时任务，根据你的需要设置时间
 # 版本变更
+## 3.0.1
+有个参数写错了，无伤大雅（）
 ## 2.0.0 Release
 懒人打卡姬更新啦！！！
 ### Features
