@@ -1,13 +1,13 @@
 /*
  * @Author: Daiisuukee（黛苏珂）
  * @Date: 2022-02-15 12:25:55
- * @LastEditTime: 2022-02-17 19:12:02
+ * @LastEditTime: 2022-02-19 17:59:08
  * @LastEditors: Please set LastEditors
  * @Description: 本脚本仅供学习交流使用，禁止用于商业用途，产生的一系列法律纠纷由使用者本人承担，作者不承担任何责任
  */
 // 下面的变量可以根据你的需求进行调节↓
 // 网页刷新参数（网络不好适当调节）
-var login_waiting_time = 2000; // 进入填报中心的等待时间，默认2秒，提示登录失败请适当提高值
+var login_waiting_time = 3000; // 进入填报中心的等待时间，默认3秒，提示登录失败请适当提高值
 var fresh_cnt_max = 3;// 默认网页最大刷新次数为3次
 var fresh_max_time = 10000;// 默认网页等待时间为10s
 
@@ -27,7 +27,7 @@ function killApp(name) {
     log(name);
     forcedStopStr = ["停", "强", "结束", "Force", "stop", "Stop"];
     queryStr = ["确认","确定", "OK", "Ok", "ok"];
-    let packageName = app.getPackageName("WeCom");
+    let packageName = app.getPackageName(name);
     var flg = false;
 
     if (packageName) {
@@ -47,6 +47,7 @@ function killApp(name) {
                     sleep(500);
                     for (var j = 0; j < queryStr.length; j++) {
                         if (textContains(queryStr[j]).exists()) {// 找到确认键
+                            log("成功找到确认键");
                             flg = true;
                             text(queryStr[j]).findOnce().click();
                             sleep(800);
@@ -64,20 +65,27 @@ function killApp(name) {
 
 // 刷新网页
 var fresh_cnt = 0;
+var language = "";
 function freashNet() {
     fresh_cnt++;
     if (fresh_cnt > fresh_cnt_max) {
         toastLog("当前网页无法加载，可能是由于网络不佳，请排除问题后重新运行打卡姬");
         toastLog("打卡姬由于网络问题退出( >﹏<。)～");
+        if (language == "zh-CN") {
+            killApp("企业微信");
+        } else if (language == "en-US") {
+            killApp("WeCom");
+        }
+        home();
         engines.myEngine().forceStop();
     }
-
+    
     var options = id("com.tencent.wework:id/kcn").findOnce();
     click(options.bounds().centerX(), options.bounds().centerY());
     sleep(500);
     var fresh_btn_test = "";
-    var fresh_btn = text("Refresh").findOnce();
-    if (!fresh_btn.enabled()) {
+    var fresh_btn = text("刷新").findOnce();
+    if (fresh_btn) {
         fresh_btn = text("刷新").findOnce();
         fresh_btn_test = "刷新"
     } else {
@@ -99,7 +107,6 @@ function freashNet() {
 ///////////////////////////////main
 log("脚本开始运行");
 
-var language = "";
 toastLog("本程序仅作为学习交流使用，禁止私自转发、用于商业用途！！！有bug请QQ：1278578896");
 toast("本程序仅作为学习交流使用，禁止私自转发、用于商业用途！！！有bug请QQ：1278578896");
 if (launchApp("WeCom")) {// 打开企业微信
@@ -161,10 +168,12 @@ log("下面是当前时间：")
 var time = new Date().format("yyyy-mm-dd");
 log(time);
 date.setText(time);
-sleep(500);
+sleep(300);
 
+swipe(device.width/2, device.height/8*7,device.width/2,device.height/8,1000);
+swipe(device.width/2, device.height/8*7,device.width/2,device.height/8,1000);
 var tempertuare = text("体温(早)*").findOnce();
-click(tempertuare.bounds().centerX(), tempertuare.bounds().centerY() + 70);
+click(tempertuare.bounds().centerX(), tempertuare.bounds().centerY() + 60);
 sleep(500);
 click(device.width/2, device.height/2 - 100);
 
