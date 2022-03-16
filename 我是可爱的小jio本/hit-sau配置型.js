@@ -1,8 +1,8 @@
 /*
  * @Author: Daiisuukee（黛苏珂）
  * @Date: 2022-02-15 12:25:55
- * @LastEditTime: 2022-02-19 17:58:49
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2022-03-16 14:59:40
+ * @LastEditors: 黛苏珂
  * @Description: 本脚本仅供学习交流使用，禁止用于商业用途，产生的一系列法律纠纷由使用者本人承担，作者不承担任何责任
  */
 // 下面的变量可以根据你的需求进行调节↓
@@ -81,6 +81,8 @@ function freashNet() {
             killApp("WeCom");
         }
         home();
+        sleep(500);
+        closePhone();
         engines.myEngine().forceStop();
     }
 
@@ -107,6 +109,9 @@ function freashNet() {
     }
     sleep(500);
     
+}
+function closePhone() {
+    className("android.widget.RelativeLayout").desc("锁屏").findOne().click();
 }
 function openPhone() {
     device.wakeUp();
@@ -188,15 +193,22 @@ log(time);
 date.setText(time);
 sleep(300);
 
-swipe(device.width/2, device.height/8*7,device.width/2,device.height/8,1000);
-swipe(device.width/2, device.height/8*7,device.width/2,device.height/8,1000);
+click("否", 1);
+click("是", 4);
+click("否", 6);
+click("否", 8);
+click("否", 10);
+click("否", 12);
+
 var tempertuare = text("体温(早)*").findOnce();
 click(tempertuare.bounds().centerX(), tempertuare.bounds().centerY() + 70);
 sleep(500);
-click(device.width/2, device.height/2 - 100);
+// 点击体温
+click("36.2");
 
-
+sleep(300);
 while(!click("提交信息"));
+sleep(500);
 while(!click("确定"));
 
 if (language == "zh-CN") {
@@ -205,5 +217,6 @@ if (language == "zh-CN") {
     killApp("WeCom");
 }
 home();
-
+sleep(500);
+closePhone();
 toastLog("打卡已完成");
